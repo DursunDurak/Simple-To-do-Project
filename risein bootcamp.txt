@@ -1,0 +1,41 @@
+import Map "mo:base/HashMap";
+import Text "mo:base/Text";
+
+//actor akıllı sözleşme
+actor {
+/dursun durak
+  type  Isim = Text;
+  type Telefon = Text;
+
+  type Entry = {
+      desc: Text;
+      telefon: Telefon;
+
+  };
+
+  //değişkenler
+  //let: immutable (değişmez)
+  //var: varible mutable(değişebilir)
+  //const: ...
+  //0 parametresi ssıfırdan başlasın diye
+ //text.hash kasa ataması demek
+  let  telefondefteri = Map.HashMap<Isim, Entry> (0,Text.equal, Text.hash);
+  
+  //query sorgular 
+  //update geliştirme
+  //async() paralelde yapılıyor
+
+  public func insert(isim:Isim, entry: Entry): async () {
+
+    telefondefteri.put(isim, entry);
+
+  };
+
+  //looplar:  if when while break var
+  // ? işaretinin amacı tip farketmeksizin string integer flooat bana çıktı ver demek
+  public query func lookup(isim : Isim) : async ?Entry {
+    telefondefteri.get(isim)
+    
+  };
+  
+}
